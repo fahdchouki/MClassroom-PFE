@@ -18,6 +18,7 @@ body {
 
 .container h3 span{
     color:var(--index);
+    font-weight: 800;
 }
 
 .rows{

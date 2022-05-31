@@ -3,6 +3,38 @@
 }
 
 
+    /* ====================  registre ================================== */
+    .bootstrap-growl{
+        background-color: rgb(245, 29, 29);
+        color: white;
+        border-radius: 0 !important;
+        -webkit-border-radius: 0 !important;
+        -moz-border-radius: 0 !important;
+        -ms-border-radius: 0 !important;
+        -o-border-radius: 0 !important;
+        
+    }
+    
+    .bootstrap-growl::before{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background-color: white; 
+        animation-name: alerts;
+        animation-duration: 4.5s;
+        animation-timing-function: none;
+    }
+    
+    @keyframes alerts {
+        from {width: 0;}
+        to {width: 100%;}
+      }
+    
+
+
 body{
     width: 100%;
     height: 100vh;

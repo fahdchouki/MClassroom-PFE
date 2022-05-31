@@ -41,7 +41,7 @@
             </div>
             <div class="input-box">
                 <span class="details">Password :</span>
-                <input type="passowrd" name="pass">
+                <input type="password" name="pass">
             </div>
             <div class="input-box">
                 <span class="details">retype password :</span>
@@ -49,8 +49,8 @@
             </div>
         </div>
         <div class="buttons">
-            <span>Already have account ? <a href="login.php">Login</a></span>
-            <input type="submit" value="REGISTER" name="reg">
+            <span>Already have account ? <a href="login.html">Login</a></span>
+            <input type="submit" value="REGISTER" name="reg" id="sub">
         </div>
     </form>
     </div>
@@ -58,6 +58,51 @@
 </div>
 
 
+
+<script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/jquery.bootstrap-growl.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+
+    <script>
+
+        $("#sub").click(function(){
+
+            $(".bootstrap-growl").remove();
+
+            var fullname = $("input[name='fullname']").val();
+            var username = $("input[name='username']").val();
+            var email = $("input[name='email']").val();
+            var pass = $("input[name='pass']").val();
+            var rpass = $("input[name='rpass']").val();
+
+            if(email == "" && pass == "" && rpass == "" && fullname == "" && username == ""){
+                $.bootstrapGrowl('Please fill all the fields', 
+                
+                {type: 'danger',
+                delay: 4000,
+                stackup_spacing: 10,
+                allow_dismiss: false});
+
+                return false;
+            }
+             else if(pass != rpass){
+                $.bootstrapGrowl('Password does not match', 
+                
+                {type: 'danger',
+                delay: 4000,
+                stackup_spacing: 10,
+                allow_dismiss: false});
+
+                return false;
+            }
+            else{
+                return true;
+            }
+        });
+
+
+</script>
 
 </body>
 </html>

@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <title>login</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+
+<title>login</title>
 </head>
 <body>
 
@@ -23,28 +25,59 @@
             <div class="image-box">
                 <img src="assets/image/login.jpg" alt="login-image">    
             </div>
-            <form action="" method="POST">
+            <form action="" method="POST" onsubmit="check()">
                 <div class="infor">
                     <!-- <div class="email"> -->
                         <label for="email">Your Email</label>
-                        <input type="email" name="email" id="email" required>
+                        <input type="email" name="email" id="email" >
                     <!-- </div> -->
                     <!-- <div class="pass"> -->
                         <label for="pass">Your Password</label>
-                        <input type="password" name="pass" id="pass" required>
+                        <input type="password" name="pass" id="pass" >
                     <!-- </div> -->
                     </div>
                     <div class="fob">
                         <a href="forget.php">Forget Password ?</a>
-                        <input type="submit" name="go" value="LOGIN">
+                        <input type="submit" name="go" value="LOGIN" id="sub">
                     </div>
                     <div class="create">
-                        Don't have account ? <span><a href="registre.php">Create one now</a></span>
+                        Don't have account ? <span><a href="registre.html">Create one now</a></span>
                     </div>
             </form>
         </div>
     </div>
 
     
+
+   
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/jquery.bootstrap-growl.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+
+    <script>
+
+            $("#sub").click(function(){
+
+                $(".bootstrap-growl").remove();
+
+                var email = $('#email').val();
+                var pass = $('#pass').val();
+                if(email == '' || pass == ''){
+                    $.bootstrapGrowl('Please fill all the fields', 
+                    
+                    {type: 'danger',
+                    delay: 4000,
+                    stackup_spacing: 10,
+                    allow_dismiss: false});
+
+                    return false;
+                }else{
+                    return true;
+                }
+            });
+
+
+    </script>
 </body>
 </html>

@@ -51,8 +51,8 @@
 
    
     <script src="assets/js/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/jquery.bootstrap-growl.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.bootstrap-growl.min.js"></script>
 
 
     <script>
@@ -65,8 +65,7 @@
                 var pass = $('#pass').val();
                 if(email == '' || pass == ''){
                     $.bootstrapGrowl('Please fill all the fields', 
-                    
-                    {type: 'danger',
+                    {type: 'success',
                     delay: 4000,
                     stackup_spacing: 10,
                     allow_dismiss: false});

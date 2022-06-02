@@ -60,8 +60,8 @@
 
 
 <script src="assets/js/jquery-3.6.0.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.bootstrap-growl.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
 
 
     <script>
@@ -74,25 +74,22 @@
             var username = $("input[name='username']").val();
             var email = $("input[name='email']").val();
             var pass = $("input[name='pass']").val();
-            var rpass = $("input[name='rpass']").val();
+            var repass = $("input[name='rpass']").val();
 
-            if(email == "" && pass == "" && rpass == "" && fullname == "" && username == ""){
+            if(email == "" || pass == "" || rpass == "" || fullname == "" || username == ""){
                 $.bootstrapGrowl('Please fill all the fields', 
-                
-                {type: 'danger',
-                delay: 4000,
-                stackup_spacing: 10,
-                allow_dismiss: false});
+                {type: 'success',
+                delay: 400000,
+                stackup_spacing: 10
+            });
 
                 return false;
             }
-             else if(pass != rpass){
-                $.bootstrapGrowl('Password does not match', 
-                
-                {type: 'danger',
+             else if(pass != repass){
+                $.bootstrapGrowl('Password does not match',{type: 'sucess',
                 delay: 4000,
-                stackup_spacing: 10,
-                allow_dismiss: false});
+                stackup_spacing: 10
+            });
 
                 return false;
             }

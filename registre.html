@@ -79,16 +79,18 @@
             if(email == "" || pass == "" || rpass == "" || fullname == "" || username == ""){
                 $.bootstrapGrowl('Please fill all the fields', 
                 {type: 'success',
-                delay: 400000,
-                stackup_spacing: 10
+                delay: 4000,
+                stackup_spacing: 10,
+                allow_dismiss: false
             });
 
                 return false;
             }
              else if(pass != repass){
-                $.bootstrapGrowl('Password does not match',{type: 'sucess',
+                $.bootstrapGrowl('Password does not match',{type: 'success',
                 delay: 4000,
-                stackup_spacing: 10
+                stackup_spacing: 10,
+                allow_dismiss: false
             });
 
                 return false;

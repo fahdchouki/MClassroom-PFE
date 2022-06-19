@@ -135,7 +135,7 @@
 
     <p class="title">Oh no!!</p>
     <div align="center">
-      <a class="btn-back" href="/">retourner a la page d'accueil</a>
+      <a class="btn-back" href="/">Homepage</a>
     </div>
     <img
       src="https://assets.codepen.io/1538474/astronaut.svg"

@@ -1,0 +1,591 @@
+:root{
+    --index : #7061FA; 
+}
+
+ body {
+    /* background-color: #EEEEEE; */
+    background-color: white !important;
+    font-family: 'Inter', sans-serif;
+}
+
+a{
+    color: black;
+}
+
+header{
+    width: 100%;
+    padding: 17px 0;
+    /*border-bottom: 1px solid black;
+    */display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.6s;
+    -webkit-transition: all 0.6s;
+    -moz-transition: all 0.6s;
+    -ms-transition: all 0.6s;
+    -o-transition: all 0.6s;
+}
+
+/* ============================================= added by javascript ============================= */
+
+header.sticky{
+    padding: 12px 0;
+    /* background-color: #1569C7; */
+    background-color:  var(--index);
+    position: fixed;
+    top: 0;
+   /* left: 0; */
+    width: 100%;
+    z-index: 1000;
+}
+
+header.sticky .logo a{
+    color: white;
+    z-index: 1000;
+}
+header.sticky .logo a span{
+    color: white;
+    z-index: 1000;
+}
+
+header.sticky nav a{
+    color: white;
+}
+
+header.sticky nav a:last-child{
+    padding: 5px 18px;
+    background-color: white;
+    color: var(--index);
+    border-radius: 26px;
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    -ms-border-radius: 26px;
+    -o-border-radius: 26px;
+}
+
+.menu-btn.sticky{
+    /* background-color: transparent !important; */
+    filter: invert(0%) !important;
+    -webkit-filter: invert(0%) !important;
+}
+
+/* ============================================= added by javascript ============================= */
+
+
+/* =======================================   partie btn responsive ================================== */
+
+.menu-btn{
+    margin-right: 80px;
+    display: none;
+    width: 35px;
+    height: 35px;
+    background-image: url(../image/Mc/menu.png);
+    filter: invert(100%);
+    border-radius: 5px;
+    background-size: cover;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-filter: invert(100%) !important;
+    cursor: pointer;
+}
+
+/* =======================================   partie btn responsive ================================== */
+
+
+.title a{
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+.logo a{
+    margin-left: 70px;
+}
+
+header nav{
+    margin-right: 70px;
+}
+
+.title a span{
+    color: var(--index);
+}
+
+header nav a{
+    margin-left: 30px;
+    text-decoration: none;
+}
+
+header nav a:last-child{
+    padding: 5px 18px;
+    background-color: var(--index);
+    color: white;
+    border-radius: 26px;
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    -ms-border-radius: 26px;
+    -o-border-radius: 26px;
+}
+
+@media screen and (max-width: 450px) {
+    .menu-btn{
+        display: block;
+        margin-right: 30px !important;
+    }
+}
+
+@media screen and (max-width: 840px) {
+    
+        header nav {
+            display: none;
+        }
+
+        .menu-btn{
+            display: block;
+            margin-right: 60px;
+        }
+
+        header nav.active{
+            position: fixed;
+            top: 0;
+            left: 0;
+            /* background-color: rgb(0, 0, 0); */
+            background-color: white;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        header nav.active a{
+                width: 100%;
+                margin-left: 0px !important;
+                color: black;
+                padding: 15px 0 15px 30px;
+                display: block;
+                /* border-bottom: 1px solid black; */
+                border-top: 1px solid black;
+        }
+
+        header nav.active a:nth-child(3){
+                border-bottom: 1px solid black;
+                
+
+        }
+
+        header nav.active a:last-child{
+            color: white;
+            background-color: var(--index) !important;
+            margin-top: 30px;
+            text-align: center;
+            width: 180px !important;
+            padding: 5px 18px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+    }
+
+        .menu-btn.active{
+            margin-right: 20px;
+            position: fixed;
+            right: 4px;
+            width: 25px;
+            height: 25px;
+            background: url(../image/Mc/close.png);
+            filter: invert(100%) !important ;
+            background-size: cover;
+            z-index: 10000;
+            -webkit-filter: invert(100%) !important;
+}
+
+       
+
+}
+
+
+/* ================================ intro-section ====================================== */
+
+    .intro-section{
+        width: 100%;
+        margin-top: 90px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .intro-section .content{
+        width: 45%;
+    }
+
+    .intro-section .content p {
+        margin: 20px 0;
+    }
+
+    .intro-section .image-box{
+        width: 45%;
+    }
+
+    .intro-section .image-box img{
+        width: 100%;
+    }
+
+    .intro-section .icons {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .intro-section .icons img{
+        width: 80px;
+    }
+
+  
+
+
+/* ================================ intro-section ====================================== */
+
+
+/* ===================================  class-virtual class =============================================== */
+.class-virtual{
+    width: 100% !important;
+    display: flex;
+    justify-content: space-between;
+}
+
+.intro-section .content-class{
+    width: 47%;
+}
+
+.intro-section .content-class img{
+    width: 80px;
+    height: 80px;
+}
+
+.intro-section .content-class h2{
+    margin: 20px 0;
+}
+
+.intro-section .image-box-class{
+    width: 37% !important;
+}
+
+.intro-section .image-box-class img{
+    width: 100%;
+}
+
+
+/* ===================================  class-virtual class =============================================== */
+
+
+/* ======================================= plateforme =======================================================*/
+.plateforme{
+    background-color: var(--index);
+    color: white;
+    margin-top: 99px;
+    /* padding: 1px 0; */
+    position: relative;
+}
+
+#wave{
+    margin-top: 0 !important;
+    padding: 40px 0 !important;
+}
+
+/*  =========================================================== wave ============================================== */
+
+/* ======= top ====================== */
+
+.custom-shape-divider-top-1655613226 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1655613226 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 24px;
+}
+
+.custom-shape-divider-top-1655613226 .shape-fill {
+    fill: #FFFFFF;
+}
+
+/* ================== bottom ============= */
+.custom-shape-divider-bottom-1655613088 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1655613088 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 16px;
+}
+
+.custom-shape-divider-bottom-1655613088 .shape-fill {
+    fill: #FFFFFF;
+}
+
+
+/* ============================================================= wave ============================================== */
+
+
+
+/*  ==================================================  partenaire ==================================================== */
+
+    .partenaire{
+        margin-top: 90px;
+    }
+
+    .partenaire .images{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .partenaire .images img{
+        margin-bottom: 30px;
+    }
+
+    .partenaire h2{
+        text-align: center;
+        margin-bottom: 100px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        position: relative;
+    }
+
+    .partenaire h2::before{
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 4px;
+        background-color: var(--index);
+        -webkit-transform:translateX(-50%);
+        -moz-transform:translateX(-50%);
+        -ms-transform:translateX(-50%);
+        -o-transform:translateX(-50%);
+}
+
+
+    .partenaire .images img:first-child{
+            width: 256px;
+            height: 144px;
+    }
+    .partenaire .images img:nth-child(2){
+            width: 123px;
+            height: 155px;
+    }
+    .partenaire .images img:nth-child(3){
+            width: 239px;
+            height: 151px;
+    }
+    .partenaire .images img:last-child{
+            width: 220px;
+            height: 80px;
+    }
+
+/*  ==================================================  end partenaire ================================================= */
+
+
+/* ================================================== footer =========================================================== */
+
+footer{
+    background-color: #000219;
+    color: white;
+    margin-top: 80px;
+    padding: 43px 0;
+}
+
+footer .cont-footer{
+    width: 30%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#footer-title a{
+    color: white ;
+}
+
+footer p{
+        margin: 70px 0;
+}
+footer hr{
+    color: white;
+}
+
+
+/* ====================================== media query ======================================= */
+
+
+@media screen and (max-width:991px) {
+    
+    .intro-section .image-box{
+        width: 48%;
+    }
+    
+    .intro-section .image-box img{
+        width: 388px;
+    }  
+
+    .intro-section #img-task{
+        width: 312px;
+    }
+    
+    .intro-section .content{
+        width: 52%;
+    }
+    .intro-section .content-class{
+        width: 50%;
+    }
+
+    .intro-section .image-box-class{
+        width: 50%;
+    }
+
+    .intro-section .content p {
+         font-size: 15px;
+    }
+    .intro-section .content-class p {
+         font-size: 15px;
+    }
+
+    .intro-section .icons img{
+        width: 55px;
+    }
+
+    .intro-section .content h3{
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .intro-section .content-class h2{
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    footer .cont-footer{
+        width: 50%;
+    }
+
+
+}
+
+@media screen and (max-width: 633px){
+    footer .cont-footer{
+        width: 70%;
+    }
+
+    footer p{
+        margin: 40px 0;
+    }
+
+    .content-class img{
+        width: 66px !important;
+    }
+
+    .logo a{
+        margin-left: 50px;
+    }
+    
+    header nav{
+        margin-right: 50px;
+    }
+}
+
+
+@media screen and (max-width: 818px){
+
+    #events , #chat{
+        flex-direction: column-reverse !important;
+    }
+
+    .intro-section{
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .intro-section .image-box img{
+        width: 100%;
+    }  
+
+    .intro-section #img-task{
+        width: 100% !important;
+    }
+
+    .intro-section .image-box{
+        width: 80%;
+    }
+    
+    .intro-section .image-box-class{
+        width: 57% !important;
+    }
+    
+    .intro-section .content{
+        width: 80%;
+        margin-bottom: 30px;
+    }
+    
+    .intro-section .content-class{
+        width: 80%;
+        margin-bottom: 30px;
+    }
+
+
+    .partenaire .images img:first-child{
+        width: 216px;
+        height: 104px;
+        }
+        .partenaire .images img:nth-child(2){
+                width: 83px;
+                height: 115px;
+        }
+        .partenaire .images img:nth-child(3){
+                width: 199px;
+                height: 111px;
+        }
+        .partenaire .images img:last-child{
+                width: 180px;
+                height: 60px;
+        }
+
+}
+
+@media screen and (max-width: 479px){
+    .partenaire .images{
+       flex-direction: column;
+    }
+
+    footer .cont-footer{
+        width: 94%;
+    }
+}
+
+@media screen and (max-width: 351px){
+
+    .intro-section .icons img{
+        width: 35px;
+    }    
+
+}

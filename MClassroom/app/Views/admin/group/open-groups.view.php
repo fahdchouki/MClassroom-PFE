@@ -22,7 +22,7 @@
                         <th>Icon</th>
                         <th>Group Name</th>
                         <th>Created At</th>
-                        <th></th>
+                        <th>Options</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,7 +43,10 @@
             </div>
             </div>
     <?php require_once INCS . "footer.view.php" ?>
+    <script src="<?php echo BURL . 'dashboard/' ?>assets/js/jquery.datatables.js"></script>
+    <script src="<?php echo BURL . 'dashboard/' ?>assets/js/bs4.datatables.js"></script>
     <script>
+        $("#controlOptionsArea").DataTable();
         document.getElementById('controlOptionsArea').addEventListener('click',function(e){
             if(e.target.classList.contains('btnJoinGroup')){
                 let grpID = e.target.getAttribute("data-groupid");

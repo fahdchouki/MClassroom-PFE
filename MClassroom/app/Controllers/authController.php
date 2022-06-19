@@ -41,6 +41,7 @@ class authController extends Controller{
                     auth()->setSessStudent($this->user['idUser']);
                     $userInfo = array(
                         'username' => $this->user['username'],
+                        'email' => $this->user['email'],
                         'name' => $this->user['name'],
                         'photo' => $this->user['photo']
                     );
@@ -50,6 +51,7 @@ class authController extends Controller{
                     auth()->setSessTeacher($this->user['idUser']);
                     $userInfo = array(
                         'username' => $this->user['username'],
+                        'email' => $this->user['email'],
                         'name' => $this->user['name'],
                         'school_subject' => $this->user['school_subject'] ?? '',
                         'photo' => $this->user['photo']

@@ -15,6 +15,11 @@ class Model{
         return $this;
     }
 
+    public function runQuery($query,$params){
+        $stmt = $this->con->prepare($query);
+        return $stmt->execute($params) ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
+    }
+
     public function get_last_inserted_id(){
         return $this->con->lastInsertId();
     }
@@ -95,5 +100,35 @@ class Model{
         $stmt = $this->con->prepare($query);
         $stmt->execute([':val'=>$value,':grpid'=>$grpID]);
         return $stmt->rowCount() > 0 ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
+    }
+
+    public function getEventsWithGroups($idUser){
+        $stmt = $this->con->prepare("SELECT e.* , g.label from `event` e inner join `event_for_group` eg on e.idEvent = eg.idEvent and e.idUser = ? inner join `m_group` g on eg.idGroup = g.idGroup");
+        return $stmt->execute(array($idUser)) ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
+    }
+
+    public function getUserEvents($idUser){
+        $stmt = $this->con->prepare("SELECT e.* , g.label from `event` e inner join `event_for_group` eg on e.idEvent = eg.idEvent inner join `m_group` g on eg.idGroup = g.idGroup inner join `joingroup` jg on jg.idGroup = g.idGroup and jg.idUser = ?");
+        return $stmt->execute(array($idUser)) ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
+    }
+
+    public function getLivechatsWithGroups($idUser){
+        $stmt = $this->con->prepare("SELECT e.* , g.label from `livechat` e inner join `livechat_for_group` eg on e.idLive = eg.idLive and e.idUser = ? inner join `m_group` g on eg.idGroup = g.idGroup");
+        return $stmt->execute(array($idUser)) ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
+    }
+
+    public function getUserLivechats($idUser){
+        $stmt = $this->con->prepare("SELECT e.* , g.label from `livechat` e inner join `livechat_for_group` eg on e.idLive = eg.idLive inner join `m_group` g on eg.idGroup = g.idGroup inner join `joingroup` jg on jg.idGroup = g.idGroup and jg.idUser = ?");
+        return $stmt->execute(array($idUser)) ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
+    }
+
+    public function getGroupsNots($idUser){
+        $stmt = $this->con->prepare("SELECT n.* FROM `joingroup` jg inner join `notification_for_group` ng on jg.idGroup = ng.idGroup and jg.idUser = ? inner join `notification` n on ng.idNotification = n.idNotification");
+        return $stmt->execute(array($idUser)) ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
+    }
+
+    public function getUserNots($idUser){
+        $stmt = $this->con->prepare("SELECT n.* FROM `notification_for_user` nu inner join `notification` n on nu.idNotification = n.idNotification and nu.idUser = ?");
+        return $stmt->execute(array($idUser)) ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
     }
 }

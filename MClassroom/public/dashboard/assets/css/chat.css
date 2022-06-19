@@ -991,13 +991,26 @@ html {
     display: none;
   }
 }
-
+#backToGroupsBtn{
+  display: none;
+  cursor: pointer;
+}
+.conversation-area{
+  user-select: none;
+}
 @media (max-width: 780px) {
   .conversation-area {
     /* display: none; */
     width: 100%;
+    /* transition: width .5s; */
   }
-  /* .chat-area{
+  .mediaConvClose{
+    width: 0%;
+  }
+  #backToGroupsBtn{
+    display: inline-block;
+  }
+  .chat-area{
     width: 100%;
-  } */
+  }
 }

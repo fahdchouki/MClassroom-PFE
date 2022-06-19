@@ -9,121 +9,39 @@
       'photo' => '',
     );
   }
+  $page = trim($_SERVER['REQUEST_URI'],"/");
 ?>
 <div class="container-scroller">
         <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
           <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo" href="<?php url() ?>"><span style="color: #b66dff ;font-weight: bold;">M</span>Classroom</a>
-            <a class="navbar-brand brand-logo-mini" href="<?php url() ?>"><span style="color: #b66dff ;font-weight: bold;">M</span>Classroom</a>
+            <a class="navbar-brand brand-logo" href="<?php url() ?>"><img style="height: auto !important;" src="<?php echo BURL . "dashboard/assets/images/logo.png" ?>" alt="logo" /></a>
+            <a class="navbar-brand brand-logo-mini" href="<?php url() ?>"><span style="color: #b66dff;font-weight:bold;">M</span></a>
           </div>
           <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
               <span class="mdi mdi-menu"></span>
             </button>
-            <div class="search-field d-none d-md-block">
-              <form class="d-flex align-items-center h-100" action="#">
-                <div class="input-group">
-                  <div class="input-group-prepend bg-transparent">
-                    <i class="input-group-text border-0 mdi mdi-magnify"></i>
-                  </div>
-                  <input type="text" class="form-control bg-transparent border-0" placeholder="Search anything">
-                </div>
-              </form>
-            </div>
             <ul class="navbar-nav navbar-nav-right">
               <li class="nav-item d-none d-lg-block full-screen-link">
                 <a class="nav-link">
                   <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
                 </a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="mdi mdi-email-outline"></i>
-                  <span class="count-symbol bg-warning"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
-                  <h6 class="p-3 mb-0">Messages</h6>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
-                    <div class="preview-thumbnail">
-                      <img src="<?php echo BURL . 'dashboard/' ?>assets/images/faces/face4.jpg" alt="image" class="profile-pic">
-                    </div>
-                    <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                      <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Mark send you a message</h6>
-                      <p class="text-gray mb-0"> 1 Minutes ago </p>
-                    </div>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
-                    <div class="preview-thumbnail">
-                      <img src="<?php echo BURL . 'dashboard/' ?>assets/images/faces/face2.jpg" alt="image" class="profile-pic">
-                    </div>
-                    <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                      <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Cregh send you a message</h6>
-                      <p class="text-gray mb-0"> 15 Minutes ago </p>
-                    </div>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
-                    <div class="preview-thumbnail">
-                      <img src="<?php echo BURL . 'dashboard/' ?>assets/images/faces/face3.jpg" alt="image" class="profile-pic">
-                    </div>
-                    <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                      <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Profile picture updated</h6>
-                      <p class="text-gray mb-0"> 18 Minutes ago </p>
-                    </div>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <h6 class="p-3 mb-0 text-center">4 new messages</h6>
-                </div>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-                  <i class="mdi mdi-bell-outline"></i>
-                  <span class="count-symbol bg-danger"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                  <h6 class="p-3 mb-0">Notifications</h6>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
-                    <div class="preview-thumbnail">
-                      <div class="preview-icon bg-success">
-                        <i class="mdi mdi-calendar"></i>
-                      </div>
-                    </div>
-                    <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                      <h6 class="preview-subject font-weight-normal mb-1">Event today</h6>
-                      <p class="text-gray ellipsis mb-0"> Just a reminder that you have an event today </p>
-                    </div>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
-                    <div class="preview-thumbnail">
-                      <div class="preview-icon bg-warning">
-                        <i class="mdi mdi-settings"></i>
-                      </div>
-                    </div>
-                    <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                      <h6 class="preview-subject font-weight-normal mb-1">Settings</h6>
-                      <p class="text-gray ellipsis mb-0"> Update dashboard </p>
-                    </div>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
-                    <div class="preview-thumbnail">
-                      <div class="preview-icon bg-info">
-                        <i class="mdi mdi-link-variant"></i>
-                      </div>
-                    </div>
-                    <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                      <h6 class="preview-subject font-weight-normal mb-1">Launch Admin</h6>
-                      <p class="text-gray ellipsis mb-0"> New admin wow! </p>
-                    </div>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <h6 class="p-3 mb-0 text-center">See all notifications</h6>
-                </div>
-              </li>
+              <?php if(auth()->isStudent()): ?>
+                            <li class="nav-item dropdown">
+                              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
+                                <i class="mdi mdi-bell-outline"></i>
+                                <span class="count-symbol bg-danger" id="redPill" style="display: none;"></span>
+                              </a>
+                              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                                <h6 class="p-3 mb-0">Notifications</h6>
+                                <div class="dropdown-divider"></div>
+                                <div id="notif-area">
+                                 <p class="text-center pt-2"> No notifications for now </p>
+                                </div>
+                              </div>
+                            </li>
+              <?php endif ?>
               <li class="nav-item nav-logout d-none d-lg-block">
                 <a class="nav-link" href="<?php url('auth/logout') ?>">
                   <i class="mdi mdi-power"></i>
@@ -154,67 +72,73 @@
                   <!-- <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i> -->
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<?php url() ?>">
+              <li class="nav-item <?= $page == "" || $page == "home" || $page == "index" ? 'active' : '' ?>">
+                <a class="nav-link <?= $page == "" || $page == "home" || $page == "index" ? 'active' : '' ?>" href="<?php url() ?>">
                   <span class="menu-title">Dashboard</span>
                   <i class="mdi mdi-home menu-icon"></i>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#group-area" aria-expanded="false" aria-controls="group-area">
+              <li class="nav-item <?= strpos($page,"group") !== false ? ' active ' : '' ?>">
+                <a class="nav-link<?= strpos($page,"group") !== false ? ' active ' : '' ?>" data-bs-toggle="collapse" href="#group-area" aria-expanded="false" aria-controls="group-area">
                   <span class="menu-title">Groups</span>
                   <i class="menu-arrow"></i>
                   <i class="mdi mdi-wechat menu-icon"></i>
                 </a>
-                <div class="collapse" id="group-area">
+                <div class="collapse<?= strpos($page,"group") !== false ? ' show ' : '' ?>" id="group-area">
                   <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="<?php url('group') ?>">Chats</a></li>
+                    <li class="nav-item<?= $page == "group" ? ' active ' : '' ?>"> <a class="nav-link<?= $page == "group" ? ' active ' : '' ?>" href="<?php url('group') ?>">Chats</a></li>
                     <?php if(auth()->isTeacher()) : ?>
-                    <li class="nav-item"> <a class="nav-link" href="<?php url('group/settings') ?>">Manage Groups</a></li>
+                    <li class="nav-item<?= $page == "group/settings" ? ' active ' : '' ?>"> <a class="nav-link<?= $page == "group/settings" ? ' active ' : '' ?>" href="<?php url('group/settings') ?>">Manage Groups</a></li>
                     <?php endif ?>
-                    <li class="nav-item"> <a class="nav-link" href="<?php url('group/opened') ?>">Open Groups</a></li>
+                    <li class="nav-item<?= $page == "group/opened" ? ' active ' : '' ?>"> <a class="nav-link<?= $page == "group/opened" ? ' active ' : '' ?>" href="<?php url('group/opened') ?>">Open Groups</a></li>
                   </ul>
                 </div>
               </li>
-              <li class="nav-item">
+              <li class="nav-item<?= strpos($page,"task") !== false ? ' active ' : '' ?>">
+                <a class="nav-link<?= strpos($page,"task") !== false ? ' active ' : '' ?>" data-bs-toggle="collapse" href="#task-area" aria-expanded="false" aria-controls="task-area">
+                  <span class="menu-title">Tasks</span>
+                  <i class="menu-arrow"></i>
+                  <i class="mdi mdi-marker menu-icon"></i>
+                </a>
+                <div class="collapse<?= strpos($page,"task") !== false ? ' show ' : '' ?>" id="task-area">
+                  <ul class="nav flex-column sub-menu">
+                  <?php if(auth()->isTeacher()) : ?>
+                      <li class="nav-item<?= $page == "task/create" ? ' active ' : '' ?>"> <a class="nav-link<?= $page == "task/create" ? ' active ' : '' ?>" href="<?php url('task/create') ?>">Create Task</a></li>
+                  <?php endif ?>
+                      <li class="nav-item<?= $page == "task" ? ' active ' : '' ?>"> <a class="nav-link<?= $page == "task" ? ' active ' : '' ?>" href="<?php url('task') ?>">Manage Tasks</a></li>
+                  </ul>
+                </div>
+              </li>
+              <?php if(auth()->isTeacher()) : ?>
+              <li class="nav-item<?= strpos($page,"course") !== false ? ' active ' : '' ?>">
                 <a class="nav-link" data-bs-toggle="collapse" href="#course-area" aria-expanded="false" aria-controls="course-area">
                   <span class="menu-title">Courses</span>
                   <i class="menu-arrow"></i>
                   <i class="mdi mdi-book-open-page-variant menu-icon"></i>
                 </a>
-                <div class="collapse" id="course-area">
+                <div class="collapse<?= strpos($page,"course") !== false ? ' show ' : '' ?>" id="course-area">
                   <ul class="nav flex-column sub-menu">
-                  <?php if(auth()->isTeacher()) : ?>
-                      <li class="nav-item"> <a class="nav-link" href="<?php url('course/create') ?>">Create Course</a></li>
-                      <?php endif ?>
-                      <li class="nav-item"> <a class="nav-link" href="<?php url('course/settings') ?>">Manage Courses</a></li>
-                      <li class="nav-item"> <a class="nav-link" href="<?php url('course/opened') ?>">Open Courses</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#task-area" aria-expanded="false" aria-controls="task-area">
-                  <span class="menu-title">Tasks</span>
-                  <i class="menu-arrow"></i>
-                  <i class="mdi mdi-marker menu-icon"></i>
-                </a>
-                <div class="collapse" id="task-area">
-                  <ul class="nav flex-column sub-menu">
-                  <?php if(auth()->isTeacher()) : ?>
-                      <li class="nav-item"> <a class="nav-link" href="<?php url('task/create') ?>">Create Task</a></li>
-                  <?php endif ?>
-                      <li class="nav-item"> <a class="nav-link" href="<?php url('task/settings') ?>">Manage Tasks</a></li>
-                      <li class="nav-item"> <a class="nav-link" href="<?php url('task/opened') ?>">Open Tasks</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
+                      <li class="nav-item<?= $page == "course/create" ? ' active ' : '' ?>"> <a class="nav-link<?= $page == "course/create" ? ' active ' : '' ?>" href="<?php url('course/create') ?>">Create Course</a></li>
+                      <li class="nav-item<?= $page == "course" ? ' active ' : '' ?>"> <a class="nav-link<?= $page == "course" ? ' active ' : '' ?>" href="<?php url('course') ?>">Manage Courses</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <?php endif ?>
+                <?php if(auth()->isStudent()) : ?>
+                  <li class="nav-item<?= $page == "course" ? ' active ' : '' ?>">
+                    <a class="nav-link" href="<?php url('course') ?>">
+                      <span class="menu-title">Courses</span>
+                      <i class="mdi mdi-book-open-page-variant menu-icon"></i>
+                    </a>
+                  </li>
+                <?php endif ?>
+              <li class="nav-item<?= $page == "event" ? ' active ' : '' ?>">
                 <a class="nav-link" href="<?php url('event') ?>">
                   <span class="menu-title">Events</span>
                   <i class="mdi mdi-calendar-multiple menu-icon"></i>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item<?= $page == "livechat" ? ' active ' : '' ?>">
                 <a class="nav-link" href="<?php url('livechat') ?>">
                   <span class="menu-title">Live Chat</span>
                   <i class="mdi mdi-message-video menu-icon"></i>

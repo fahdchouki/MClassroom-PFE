@@ -17,7 +17,7 @@
 <div class="container">
         <?php 
             if(isset($_COOKIE['errors'])){
-                pre(unserialize($_COOKIE['errors']));
+                // pre(unserialize($_COOKIE['errors']));
             }
         ?>
     <div class="cont">

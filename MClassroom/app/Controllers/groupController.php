@@ -227,7 +227,18 @@ class groupController extends Controller
                 'idGroup' => $_POST['groupID'],
                 'idUser' => $_POST['userID'],
             ))){
-                echo 'ok';exit;
+                echo 'ok';
+                    $dataMember['title'] = "You are a new member in " . auth()->getSessUserInfo()['name'] . " group";
+                    $dataMember['content'] = "The group admin added you recently";
+                    $dataMember['type'] = 1;//user
+                    $dataMember['link'] = BURL . "group/";
+                    $dataMember['icon'] = BURL . "uploads/default_noti_icon_new_mem.png";
+                    $notModel = (new Model)->table('notification');
+                    if($notModel->insert($dataMember)){
+                        $notID = $notModel->get_last_inserted_id();
+                        (new Model)->table('notification_for_user')->insert(['idNotification'=>$notID,'idUser'=>$_POST['userID']]);
+                    }
+                exit;
             }
         }
     }

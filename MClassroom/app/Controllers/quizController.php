@@ -1,114 +1,117 @@
 <?php
 
-class postsController extends Controller{
+class quizController extends Controller{
 
-    protected $postModel;
+    protected $taskModel;
 
     public function __construct(){
-        $this->postModel = new PostModel;
+        $this->taskModel = new TaskModel;
     }
 
     public function index(){
-        if(auth()->isAdmin()){
-            $data['posts'] = $this->postModel->getPosts();
-            $data['users'] = (new Model)->table('users')->getWhere('role',3,null,'desc','!='); 
-            return $this->view('admin' . DS . 'posts' . DS . 'index',$data);
-        }elseif(auth()->isSubAdmin()){
-            $subAdminId = intVal(auth()->getSubAdminID());
-            $data['posts'] = $this->postModel->getPosts();
-            $data['books'] = (new Model)->table('books')->getWhere('resp_user_id',$subAdminId,'id');
-            return $this->view('admin' . DS . 'posts' . DS . 'index',$data);
+        if(isset($_COOKIE['quizInfo'])){
+            return $this->view('admin' . DS . 'task' . DS . 'quiz');
         }else{
-            redirect();
+            redirect('task');
         }
-    }
-
-    public function show($id){
-        if($data['post'] = $this->postModel->getPostWhere('id',intval($id))[0]){
-            return $this->view('admin' . DS . 'posts' . DS . 'show',$data);
-        }else{
-            redirect('posts');
-        }
+        
     }
 
     public function create(){
-        $data['books'] = (new Model)->table('books')->getAll();
-        return $this->view('admin' . DS . 'posts' . DS . 'create',$data);
+        if(isset($_POST['taskTitle'])){
+            $quizInfo = $_POST;
+            setcookie('quizInfo',@serialize($quizInfo),time()+3600,'/');
+            echo 'ok';
+            exit;
+        }else{
+            redirect();
+        }
     }
 
     public function store(){
-        if(isset($_POST['create_post'])){
+        if(isset($_POST['quizContent']) && isset($_COOKIE['quizInfo'])){
+            $quizInfo = @unserialize($_COOKIE['quizInfo']);
+            $quizName = rand(0,9999) . "-" . time() . "-quiz.txt";
+            $f = fopen(UPLOADS . 'tasks' . DS . 'quiz' . DS . $quizName,"a");
+            if(fputs($f,$_POST['quizContent'])){
+                fclose($f);
+                $quizMod = $this->taskModel->table('quiz');
+                if($quizMod->insert(['content'=>$quizName])){
+                    $quizID = $quizMod->get_last_inserted_id();
+                    $data['title'] = $quizInfo['taskTitle'];
+                    $data['status'] = $quizInfo['taskStatus']; // 2 means public
+                    $data['task_type'] = "1";
+                    $data['id_type'] = $quizID;
+                    $data['deadline'] = date('Y-m-d', strtotime($quizInfo['taskDueDate']));
+                    $data['idUser'] = auth()->getTeacherID();
+                    $taskMod = $this->taskModel->table('task');
 
-            $data = [
-                'body' => trim($_POST['post_body']),
-                'file_path' => '',
-                'book_id' => $_POST['book_id'],
-            ];
+                    if($taskMod->insert($data)){
+                        $taskID = $taskMod->get_last_inserted_id();
+                        $quizInfo['participants'] = json_decode($quizInfo['participants']);
+                        if($quizInfo['taskFor'] == 1){ // means group
+                            foreach($quizInfo['participants'] as $q){
+                                $this->taskModel->table('task_for_group')->insert(['idTask'=>$taskID,'idGroup'=>$q]);
+                            }
 
-            if(auth()->isAdmin()){
-                $data['user_id'] = intval(auth()->getAdminID());
-                $data['approve_status'] = $_POST['post_status'];
-            }elseif(auth()->isSubAdmin()){
-                $data['user_id'] = intval(auth()->getSubAdminID());
-                $data['approve_status'] = $_POST['post_status'];
-            }else{
-                $data['user_id'] = intval(auth()->getEnsID());
-                $data['approve_status'] = 0;
-                if($_FILES['attachFile']['error'] != UPLOAD_ERR_NO_FILE){
-                    $fileUpload = new Uploader;
-                    $fileUpload->setDir(UPLOADS)->setMaxSize(50)->setExtensions(['jpg', 'jpeg', 'png', 'webp', 'jfif','pdf','doc','docx','ppt','pptx']);
-                    if ($fileUpload->uploadFile('attachFile', true)) {
-                        $data['file_path'] = $fileUpload->getUploadName();
-                    } else {
-                        $errors['file_path'] = $fileUpload->getMessage();
+
+                            if($data['status'] == 2){
+                                $dataQuiz['title'] = "New Quiz Created By " . auth()->getSessUserInfo()['name'];
+                                $dataQuiz['content'] = excerpt($data['title'],20);
+                                $dataQuiz['type'] = 2;//group
+                                $dataQuiz['link'] = BURL . "task/";
+                                $dataQuiz['icon'] = BURL . "uploads/default_noti_icon_task.png";
+                                $notModel = (new Model)->table('notification');
+                                if($notModel->insert($dataQuiz)){
+                                    $notID = $notModel->get_last_inserted_id();
+                                    foreach($quizInfo['participants'] as $q){
+                                        (new Model)->table('notification_for_group')->insert(['idNotification'=>$notID,'idGroup'=>$q]);
+                                    }
+                                }
+                            }
+
+                            unset($_COOKIE['quizInfo']); 
+                            setcookie('quizInfo', null, -1, '/');
+                            echo 'ok';exit;
+                        }else{ // means user
+                            foreach($quizInfo['participants'] as $q){
+                                $this->taskModel->table('task_for_user')->insert(['idTask'=>$taskID,'idUser'=>$q]);
+                            }
+
+                            if($data['status'] == 2){
+                                $dataQuiz['title'] = "New Quiz Created By " . auth()->getSessUserInfo()['name'];
+                                $dataQuiz['content'] = excerpt($data['title'],20);
+                                $dataQuiz['type'] = 1;//user
+                                $dataQuiz['link'] = BURL . "task/";
+                                $dataQuiz['icon'] = BURL . "uploads/default_noti_icon_task.png";
+                                $notModel = (new Model)->table('notification');
+                                if($notModel->insert($dataQuiz)){
+                                    $notID = $notModel->get_last_inserted_id();
+                                    foreach($quizInfo['participants'] as $q){
+                                        (new Model)->table('notification_for_user')->insert(['idNotification'=>$notID,'idUser'=>$q]);
+                                    }
+                                }
+                            }
+
+                            unset($_COOKIE['quizInfo']); 
+                            setcookie('quizInfo', null, -1, '/');
+                            echo 'ok';exit;
+                        }
                     }
                 }
             }
-
-            $errors = array();
-
-            if(empty($data['body'])){
-                $errors['body'] = 'nothing to post';
-            }
-
-            if(empty($errors)){
-                if($this->postModel->insert($data)){
-                    (! auth()->isEns()) ? redirect('posts') : redirect('books');
-                }else{
-                    $errors['error'] = 'something went wrong';
-                }
-            }
-
-            if(!empty($errors)){
-                $errors['data'] = $data;
-                (! auth()->isEns()) ? redirect('posts/create','errors',serialize($errors)) : redirect('books');
-            }
         }else{
-            redirect();
+            redirect('task');
         }
     }
 
-    public function update(){
-        if(isset($_POST['accept_post'])){
-            $this->postModel->update(array('approve_status' => 1),'id',$_POST['post_id']);
-            redirect('posts');
-        }else{
-            redirect();
+    public function discard(){
+        if(isset($_COOKIE['quizInfo'])){
+            unset($_COOKIE['quizInfo']); 
+            setcookie('quizInfo', null, -1, '/');
+            echo 'ok';
+            exit;
         }
     }
 
-    public function destroy(){
-        if(isset($_POST['post_id'])){
-            if($this->postModel->delete('id',$_POST['post_id'])){
-                redirect('posts');
-            }else{
-                $errors['error'] = 'something went wrong';
-            }
-            if(!empty($errors)){
-                redirect('posts','errors',$errors);
-            }
-        }else{
-            redirect();
-        }
-    }
 }

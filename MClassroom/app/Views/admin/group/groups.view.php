@@ -16,7 +16,7 @@
               <div class="chatgroups" style="padding: 10px;" data-userid="<?= auth()->isStudent() ? auth()->getStudentID() : auth()->getTeacherID() ?>" data-admin="<?= $allGroups[0]['grp_admin'] ?>">
                 <div class="app">
                   <div class="wrapper">
-                  <div class="conversation-area">
+                  <div class="conversation-area" id="conversation-area">
                     <?php foreach($allGroups as $grp): ?>
                       <div class="msg grp-conv" data-groupid="<?= $grp['grpID'] ?>" data-grouplabel="<?= $grp['label'] ?>">
                       <img class="msg-profile" src="<?= BURL . 'uploads/groups/' . $grp['group_icon'] ?>" alt="" />
@@ -41,6 +41,7 @@
                   <div class="chat-area blank-chat-area" style="background-color: #0b232e;"></div>
                   <div class="chat-area fill-chat-area" style="display: none;">
                     <div class="chat-area-header">
+                      <div id="backToGroupsBtn">X</div>
                       <div class="chat-area-title"> <p id="group-chat-title" style="margin-bottom: 0px;" ></p> <span id="group-chat-members" style="font-weight: normal;font-size: .8rem;"></span></div>
                       <div class="chat-area-menu">
                         <style>
@@ -140,8 +141,6 @@
                   </div>
                 </div>
               </div>
-        <?php require_once INCS . "footer.view.php" ?>
-
 
         <!-- modal for options -->
         <div class="modal fade" id="memSettingsModal" tabindex="-1" aria-labelledby="memSettingsModalLabel" aria-hidden="true">
@@ -201,7 +200,22 @@
         </div>
       </div>
       <!-- end of show image modal -->
+      <?php require_once INCS . "footer.view.php" ?>
         <script>
+
+          $("#backToGroupsBtn").click(()=>{
+            document.getElementById("backToGroupsBtn").style.display = "none";
+            document.getElementById("conversation-area").style.width = "100%";
+          });
+          $(window).resize(()=>{
+            if(window.innerWidth <= 780){
+                      document.getElementById("conversation-area").style.width = "100%";
+            }else{
+              document.getElementById("conversation-area").style.width = "auto";            
+            }
+          });
+
+
           document.querySelector(".chat-area").scrollTop = document.querySelector(".chat-area").scrollHeight;
           document.querySelector("#emojiContainer").addEventListener('click',(el)=>{
             if(el.target.classList.contains('emojiCode')){
@@ -256,7 +270,7 @@
             }
           });
 
-          document.querySelector(".chat-area").scrollTop = document.querySelector(".chat-area").scrollHeight;
+          // document.querySelector(".chat-area").scrollTop = document.querySelector(".chat-area").scrollHeight;
 
 
 
@@ -287,7 +301,7 @@
                             }
                           </style>
                         <span class="msg-message">${grp.content == null ? 'No message yet' : grp.content}</span>
-                        <span class="msg-date text-center">${grp.created_at || ''}</span>
+                        <span class="msg-date text-center">${grp.created_atF || ''}</span>
                         </div>
                       </div>
                       </div>`;
@@ -299,8 +313,14 @@
               }
             });
           }
-
+          const mediaQuery = window.matchMedia('(max-width: 780px)');
           document.querySelector(".conversation-area").addEventListener('click',(ev)=>{
+                    if (mediaQuery.matches) {                 
+                      document.getElementById("backToGroupsBtn").style.display = "inline-block";
+                      document.getElementById("conversation-area").style.width = "0%";
+                    }else{
+                      document.getElementById("conversation-area").style.width = "auto";
+                    }
                   if(ev.target.classList.contains('grp-conv')){
                     let el = ev.target;
                     let group_id = el.getAttribute('data-groupid');
@@ -374,7 +394,7 @@
                     msgs += `<div class="chat-msg ${msg.idUser == dataUserID ? 'owner' : ''}">
                                 <div class="chat-msg-profile">
                                 <img class="chat-msg-img" src="<?= BURL.'uploads/profiles/' ?>${msg.photo}" alt="" />
-                                <div class="chat-msg-date"><span>${msg.name} - </span>${msg.created_at}</div>
+                                <div class="chat-msg-date"><span>${msg.name} - </span>${msg.created_atF}</div>
                                 </div>
                                 <div class="chat-msg-content">
                                   <div class="chat-msg-text" style="width: 100%;word-break: break-word;">${msg.content}</div>

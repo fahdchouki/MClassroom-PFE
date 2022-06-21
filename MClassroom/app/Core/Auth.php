@@ -32,28 +32,28 @@ class Auth{
 
     public function setSessStudent($id){
         $this->setUserSess('student');
-        $this->session->set('studentID',openssl_encrypt("$id","AES-128-CTR","M5LaSsROoM"));
+        $this->session->set('studentID',@openssl_encrypt("$id","AES-128-CTR","M5LaSsROoM"));
     }
     
     public function setSessTeacher($id){
         $this->setUserSess('teacher');
-        $this->session->set('teacherID',openssl_encrypt("$id","AES-128-CTR","M5LaSsROoM"));
+        $this->session->set('teacherID',@openssl_encrypt("$id","AES-128-CTR","M5LaSsROoM"));
     }
 
     public function setSessUserInfo($userInfoArray){
-        $this->session->set('userInfoArray',openssl_encrypt(serialize($userInfoArray),"AES-128-CTR","M5LaSsROoM"));
+        $this->session->set('userInfoArray',@openssl_encrypt(serialize($userInfoArray),"AES-128-CTR","M5LaSsROoM"));
     }
 
     public function getStudentID(){
-        return openssl_decrypt($this->session->get('studentID'),"AES-128-CTR","M5LaSsROoM");
+        return @openssl_decrypt($this->session->get('studentID'),"AES-128-CTR","M5LaSsROoM");
     }
 
     public function getTeacherID(){
-        return openssl_decrypt($this->session->get('teacherID'),"AES-128-CTR","M5LaSsROoM");
+        return @openssl_decrypt($this->session->get('teacherID'),"AES-128-CTR","M5LaSsROoM");
     }
 
     public function getSessUserInfo(){
-        return unserialize(openssl_decrypt($this->session->get('userInfoArray'),"AES-128-CTR","M5LaSsROoM"));
+        return unserialize(@openssl_decrypt($this->session->get('userInfoArray'),"AES-128-CTR","M5LaSsROoM"));
     }
 
     //================

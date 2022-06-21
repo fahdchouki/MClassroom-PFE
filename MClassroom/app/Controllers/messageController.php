@@ -19,6 +19,18 @@ class messageController extends Controller{
                 'created_at' => (new DateTime())->format("Y-m-d H:i:s.v"),
             ))){
                 echo 'ok';
+                if(auth()->isTeacher()){
+                    $data['title'] = "New message From " . auth()->getSessUserInfo()['name'];
+                    $data['content'] = excerpt($msgContent,20);
+                    $data['type'] = 2;//group
+                    $data['link'] = BURL . "group/";
+                    $data['icon'] = BURL . "uploads/default_noti_icon.png";
+                    $notModel = (new Model)->table('notification');
+                    if($notModel->insert($data)){
+                        $notID = $notModel->get_last_inserted_id();
+                        (new Model)->table('notification_for_group')->insert(['idNotification'=>$notID,'idGroup'=>$groupID]);
+                    }
+                }
                 exit;
             }
         }
@@ -36,6 +48,18 @@ class messageController extends Controller{
                     'created_at' => (new DateTime())->format("Y-m-d H:i:s.v"),
                 ))){
                     echo 'ok';
+                    if(auth()->isTeacher()){
+                        $data['title'] = "New message From " . auth()->getSessUserInfo()['name'];
+                        $data['content'] = excerpt("new image sent",20);
+                        $data['type'] = 2;//group
+                        $data['link'] = BURL . "group/";
+                        $data['icon'] = BURL . "uploads/default_noti_icon.png";
+                        $notModel = (new Model)->table('notification');
+                        if($notModel->insert($data)){
+                            $notID = $notModel->get_last_inserted_id();
+                            (new Model)->table('notification_for_group')->insert(['idNotification'=>$notID,'idGroup'=>$groupID]);
+                        }
+                    }
                     exit;
                 }
             }

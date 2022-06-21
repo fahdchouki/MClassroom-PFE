@@ -12,7 +12,7 @@ class GroupModel extends Model{
     }
 
     public function getGroupsWithLastMsg($idAdmin){
-        $stmt = $this->con->prepare("SELECT t1.*,grp.idGroup grpID,grp.label,grp.group_icon,grp.idUser grp_admin,grp.created_at grp_created_at
+        $stmt = $this->con->prepare("SELECT t1.*,DATE_FORMAT(t1.created_at,'%a %d %b  %H:%i  %p') as created_atF,grp.idGroup grpID,grp.label,grp.group_icon,grp.idUser grp_admin,grp.created_at grp_created_at
         FROM message t1 LEFT JOIN message t2
         ON (t1.idGroup = t2.idGroup AND t1.created_at < t2.created_at)
         RIGHT JOIN `m_group` grp ON t1.idGroup = grp.idGroup
@@ -21,7 +21,7 @@ class GroupModel extends Model{
     }
 
     public function getGroupsWithLastMsg_std($idStd){
-        $stmt = $this->con->prepare("SELECT t1.*,grp.idGroup grpID,grp.label,grp.group_icon,grp.idUser grp_admin,grp.created_at grp_created_at
+        $stmt = $this->con->prepare("SELECT t1.*,DATE_FORMAT(t1.created_at,'%a %d %b  %H:%i  %p') as created_atF,grp.idGroup grpID,grp.label,grp.group_icon,grp.idUser grp_admin,grp.created_at grp_created_at
         FROM message t1 LEFT JOIN message t2
         ON (t1.idGroup = t2.idGroup AND t1.created_at < t2.created_at)
         RIGHT JOIN `m_group` grp ON t1.idGroup = grp.idGroup 
@@ -31,12 +31,12 @@ class GroupModel extends Model{
     }
 
     public function getGroupMessages($idUser,$idGroup){
-        $stmt = $this->con->prepare("select message.*,user.name,user.photo from message inner join user on user.idUser = message.idUser INNER JOIN m_group on m_group.idGroup = message.idGroup where message.idGroup = ? and m_group.idUser = ? ORDER BY message.created_at");
+        $stmt = $this->con->prepare("select message.*,DATE_FORMAT(message.created_at,'%a %d %b  %H:%i  %p') as created_atF,user.name,user.photo from message inner join user on user.idUser = message.idUser INNER JOIN m_group on m_group.idGroup = message.idGroup where message.idGroup = ? and m_group.idUser = ? ORDER BY message.created_at");
         return $stmt->execute(array($idGroup,$idUser)) ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
     }
 
     public function getGroupMessages_std($idGroup){
-        $stmt = $this->con->prepare("select message.*,user.name,user.photo from message inner join user on user.idUser = message.idUser INNER JOIN m_group on m_group.idGroup = message.idGroup where message.idGroup = ? ORDER BY message.created_at");
+        $stmt = $this->con->prepare("select message.*,DATE_FORMAT(message.created_at,'%a %d %b  %H:%i  %p') as created_atF,user.name,user.photo from message inner join user on user.idUser = message.idUser INNER JOIN m_group on m_group.idGroup = message.idGroup where message.idGroup = ? ORDER BY message.created_at");
         return $stmt->execute(array($idGroup)) ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
     }
 

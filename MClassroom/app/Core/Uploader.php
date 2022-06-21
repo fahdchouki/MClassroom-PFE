@@ -48,10 +48,10 @@ class Uploader{
 
     //then this    4
 
-    function uploadFile($fileBrowse,$useRandStart = false){
+    function uploadFile($fileBrowse,$useRandStart = false,$setName = null){
         $result =   false;
         $size   =   $_FILES[$fileBrowse]["size"];
-        $name   =   $_FILES[$fileBrowse]["name"];
+        $name   =   $setName == null ? $_FILES[$fileBrowse]["name"] : $setName;
         $ext    =   pathinfo($name,PATHINFO_EXTENSION);
 
         $this->uploadName=  ($useRandStart ? rand(11,99999999) . '_' : '') . strtolower(str_replace(' ','',$name));

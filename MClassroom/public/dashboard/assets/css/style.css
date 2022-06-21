@@ -2253,6 +2253,9 @@ progress {
     max-width: 720px; } }
 
 @media (min-width: 992px) {
+  .dropdown-menu.dropdown-menu-right.navbar-dropdown.preview-list{
+    left:-200px;
+  }
   .container, .container-sm, .container-md, .container-lg {
     max-width: 960px; } }
 
@@ -6607,7 +6610,7 @@ textarea.form-control-lg {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1050;
+  z-index: 1049;
   width: 100vw;
   height: 100vh;
   background-color: #000000; }
@@ -14111,7 +14114,7 @@ dl {
   font-family: "ubuntu-regular", sans-serif;
   padding: 0;
   width: 260px;
-  z-index: 1050;
+  z-index: 1029;
   transition: width 0.25s ease, background 0.25s ease;
   -webkit-transition: width 0.25s ease, background 0.25s ease;
   -moz-transition: width 0.25s ease, background 0.25s ease;
@@ -14448,6 +14451,52 @@ dl {
   flex-grow: 1; }
 
 /* summernote */
-.note-editor .modal.show .modal-footer,.note-editor .modal.show .modal-header button.close{
-  display: none;
+.note-editor .modal.show .modal-footer,.note-editor .modal.show .modal-header button.close,
+.note-view .note-btn.btn-codeview.note-codeview-keep{
+  display: none !important;
+}
+.note-editor input[type='checkbox']{
+  opacity:1;
+}
+select[name="coursesTable_length"]{
+  padding: 5px 15px !important;
+}
+#coursesTable_filter{
+  text-align: right;
+}
+#coursesTable_filter label{
+  text-align: left;
+  font-size: .9rem;
+}
+#coursesTable_info{
+  font-size: .9rem !important;
+}
+.grpCourse{
+  padding: 10px 15px;
+  margin: 5px;
+  color:#fff;
+  background-color: #b66dff;
+}
+th,td{
+  white-space: nowrap;
+}
+th img{
+  cursor: pointer;
+  width: 15px !important;
+  height: 15px !important;
+  margin-left: 8px;
+}
+
+.calendar .day.today,.calendar .event-container .event{
+  background: #b66dff !important;
+}
+
+.calendar .day.has-event:after {
+  width: 8px;
+  height: 8px;
+  top: calc(50% + 0.8em);
+  left: calc(50% - 4px);
+}
+.calendar td{
+  user-select: none;
 }

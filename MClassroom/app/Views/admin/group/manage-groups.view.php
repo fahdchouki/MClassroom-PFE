@@ -124,7 +124,10 @@
         <!-- end of edit modal -->
     </div>
     <?php require_once INCS . "footer.view.php" ?>
+    <script src="<?php echo BURL . 'dashboard/' ?>assets/js/jquery.datatables.js"></script>
+    <script src="<?php echo BURL . 'dashboard/' ?>assets/js/bs4.datatables.js"></script>
     <script>
+        $("#controlOptionsArea").DataTable();
         // form create group btn
         $("#btnCreateGroup").on('click',()=>{
             let grpName = $("#group-name").val();
@@ -145,7 +148,6 @@
                 dataType:'script',
                 data:form_data,
                 success:function(res){
-                    console.log(res);
                     if(res == 'ok'){
                         $("#createGroupForm").trigger('reset');
                         $("#btnCloseFormGroup").trigger('click');

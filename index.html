@@ -10,42 +10,112 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
 
     <title>Services</title>
 </head>
 <body>
 
 
+    <header class="header">
+        <div class="logo title">
+             <a href=""> <span>M</span>Classroom </a>
+        </div>
+        <nav>
+        
+            <a href="index.html">Accueil</a>
+            <a href="services.html">Services</a>
+            <a href="login.html">Connexion</a>
+            <a href="registre.html">S'inscrire</a>
+        
+        </nav>
+
+             <div class="menu-btn"></div>
+
+    </header>
+
     <div class="landing-page">
-
-
-                <header class="header">
-                    <div class="logo title">
-                         <a href=""> <span>M</span>Classroom </a>
-                    </div>
-                    <nav>
-                    
-                        <a href="index.html">Accueil</a>
-                        <a href="services.html">Services</a>
-                        <a href="login.html">Connexion</a>
-                        <a href="registre.html">S'inscrire</a>
-                    
-                    </nav>
-
-                         <div class="menu-btn"></div>
-
-                </header>
-  
-
+        <h2>MClassroom the future of education</h2>
     </div>
 
-    <br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
 
-  <!-- ================================================   footer -->
+    <!--  ===================================== sec 1 =================================================================== -->
+
+    <div class="container">
+        <div class="howitswrok">
+
+            <h2>How it works</h2>
+
+            <div class="rows">
+              <div class="image-box">
+                      <img src="assets/image/howitwork.png" alt="Mclassroom">
+              </div>
+              <div class="detail">
+                <h4>LOREM IPSOM DOLOR</h4>
+                <div class="det-detail">
+                  <span>1</span> <p> Lorem ipsum dolor sit amet consectetur adipisicing amet consectetur adipisicing.</p>
+                </div>
+                <div class="det-detail">
+                  <span>2</span> <p> Lorem ipsum dolor sit amet consectetur adipisicing amet consectetur adipisicing.</p>
+                </div>
+
+              </div>
+            </div>
+
+        </div>
+      </div>
+
+
+      <!-- ================================================  testimonial ======================================= -->
+
+
+      <div class="tesm my-5">
+        <div class="container">
+                <h2 class="text-center mb-5">Reviews & Ratings</h2>
+
+
+        <div class="owl-carousel owl-theme">
+            <div class="item" >
+                <img src="assets/image/testimo/1.png" alt="avatar">
+                    <div class="top">
+                      <h4>Peter Packer <br> <span> Art Director </span> </h4>
+                      <i class="fa-solid fa-quote-right"></i>
+                    </div>
+
+                    <div class="bottom">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis eius nulla,
+                         quibusdam, quae iusto pariatur temporibus consequatur,
+                         nisi voluptatibus corrupti et itaque cupiditate iure? Ipsum laboriosam 
+                         nesciunt corporis fugiat illum.</p>
+                    </div>
+            </div>
+            <div class="item" >
+                <img src="assets/image/testimo/2.png" alt="avatar">
+                    <div class="top">
+                      <h4>Walid Oumechtak <br> <span> Web Director </span> </h4>
+                      <i class="fa-solid fa-quote-right"></i>
+                    </div>
+
+                    <div class="bottom">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis eius nulla,
+                         quibusdam, quae iusto pariatur temporibus consequatur,
+                         nisi voluptatibus corrupti et itaque cupiditate iure? Ipsum laboriosam 
+                         nesciunt corporis fugiat illum.</p>
+                    </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+      <!-- ================================================  testimonial ======================================= -->
+
+ 
+
+  <!-- ================================================   footer ========================================================  -->
 
 <footer>
   <div class="cont-footer">
@@ -70,9 +140,32 @@
 
         <script src="assets/js/jquery-3.6.0.min.js"></script>
         <script src="assets/js/main.js"></script>
+        <script src="assets/js/owl.carousel.min.js"></script>
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
         <script>
           AOS.init();
+
+          $('.owl-carousel').owlCarousel({
+      
+                    loop:true,
+                    autoplay:true,
+                    margin:10,
+                    nav:true,
+                    responsiveClass:true,
+                    responsive:{
+                        0:{
+                            items:1
+                        },
+                        767:{
+                            items:1
+                        },
+                        1000:{
+                            items:2
+                        }
+                    }
+          })
+
+
         </script>
 </body>
 </html>
